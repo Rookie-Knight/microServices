@@ -4,7 +4,18 @@ from tornado.web import RequestHandler
 
 
 class IndexHandler(RequestHandler):
+
     def get(self):
+        data = {
+            "msg": "Hi Tornado",
+            "error_msg": "err",
+            "age": 18,
+            "menu": ["主页", "最新推荐", "热门话题", "个人中心"],
+            "content": "<h3> Hello world</h3>"
+        }
+        self.render("index.html", **data)
+
+    def post(self):
         """获取数据"""
         # 请求参数读取
         # get_argument和get_arguments在GET,POST...请求方式中都通用
@@ -32,7 +43,7 @@ class IndexHandler(RequestHandler):
         wd4 = req.query_arguments.get('wd')
         print(wd4)
 
-    def post(self):
+    def put(self):
         """提交数据"""
         # 读取表单参数
         # 方式1：任何请求方式都可以获取
@@ -47,11 +58,3 @@ class IndexHandler(RequestHandler):
         city = req.arguments.get('city').decode('utf-8')
         print(name, city)
         self.write("<h3>Post请求</h3>")
-
-    def put(self):
-        """提交数据"""
-        self.write("<h3>Put请求</h3>")
-
-    def delete(self):
-        """提交数据"""
-        self.write("<h3>Delete请求</h3>")

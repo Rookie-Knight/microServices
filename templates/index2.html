@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+{% autoescape None %}
+<head>
+    <meta charset="UTF-8">
+    <title>Index Page</title>
+    <link rel="stylesheet"  href="{{ static_url('css/index.css') }}">
+</head>
+<body>
+<h1>This is Index Page</h1>
+<nav>
+    <ul class="nav-bar">
+        {% for info in menu %}
+            <li>{{ info }}</li>
+        {% end %}
+    </ul>
+</nav>
+<p>
+    {{msg}}
+</p>
+<p>
+   {{ "hello python"[-6:]}}
+</p>
+<p>
+    {{ len("hello python") }}
+</p>
+<p>
+    {{ ",".join([str(x**2 ) for x in range(10)]) }}
+</p>
+<p>
+    {% if error_msg is None %}
+        <span class="error">当前无数据</span>
+    {% else %}
+        <span>{{ msg }}</span>
+    {% end %}
+</p>
+<p>
+    {% if age >= 90 %}
+        <span class="good">great</span>
+    {% elif age >= 60%}
+        <span>normal</span>
+    {% else %}
+        <span class="error">bad</span>
+    {% end %}
+
+</p>
+<p>
+    {#  raw 可以使模板不自动转义#}
+    {# 或者在文件头部使用{% autoescape None%} #}
+    {#{% raw content %}#}
+    {{ content }}
+</p>
+</body>
+</html>

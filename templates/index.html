@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block nav %}
+<nav>
+    <ul class="nav-bar">
+        {% for info in menu %}
+            <li>{{ info }}</li>
+        {% end %}
+    </ul>
+</nav>
+{% end %}
+
+{% block content%}
+    <div id="left">
+        {% module Menu() %}
+    </div>
+    <div id="right">
+        <iframe name="content"></iframe>
+    </div>
+{% end %}
